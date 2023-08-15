@@ -17,10 +17,9 @@ public class Program {
         JdbcDataSource dataSource = new JdbcDataSource();
         updateData("schema.sql", dataSource);
         updateData("data.sql", dataSource);
-        User creator = new User(5L, "fifth", "five", new ArrayList<>(), new ArrayList<>());
-        Chatroom room = new Chatroom(5L, "chat5", creator, new ArrayList<>());
-        Message message = new Message(5, creator, room, "Hello, It is 15 new message!", LocalDateTime.now());
-        System.out.println("23!!!!!!!!!!!!!!!");
+        User creator = new User(5, "fifth", "five", new ArrayList<>(), new ArrayList<>());
+        Chatroom room = new Chatroom(5, "chat5", creator, new ArrayList<>());
+        Message message = new Message(6, creator, room, "Hello, It is new message!", LocalDateTime.now());
         MessagesRepository messagesRepository = new MessagesRepositoryJdbcImpl(dataSource.getDataSource());
         if(messagesRepository.save(message)) System.exit(-1);
         System.out.println(message.getId());
