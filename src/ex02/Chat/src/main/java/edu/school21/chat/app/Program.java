@@ -21,7 +21,8 @@ public class Program {
         Chatroom room = new Chatroom(5, "chat5", creator, new ArrayList<>());
         Message message = new Message(6, creator, room, "Hello, It is new message!", LocalDateTime.now());
         MessagesRepository messagesRepository = new MessagesRepositoryJdbcImpl(dataSource.getDataSource());
-        if(messagesRepository.save(message)) System.exit(-1);
+        if(!messagesRepository.save(message))
+            System.exit(-1);
         System.out.println(message.getId());
     }
 
